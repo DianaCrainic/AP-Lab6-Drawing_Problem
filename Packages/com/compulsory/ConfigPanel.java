@@ -49,8 +49,8 @@ public class ConfigPanel extends JPanel {
 
     /**
      * changeConfigurations method:
-     * -in the case of RegularPolygon, there is a setting for changing the number of sides
-     * -in the case of NodesShape or SquareShape, there is no setting except of changing the color
+     * - in the case of RegularPolygon, there is a setting for changing the number of sides
+     * - in the case of NodesShape or SquareShape, there is no setting except of changing the color
      * so it is verified the RadioButton selected
      */
     public void changeConfigurations() {
