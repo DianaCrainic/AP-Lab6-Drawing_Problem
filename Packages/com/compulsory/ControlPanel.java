@@ -1,4 +1,4 @@
-package compulsory;
+package com.compulsory;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,16 +10,21 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * ControlPanel class - is managing the image being created.
+ * ControlPanel class:  is managing the image being created.
  * This panel will contain the buttons: Load, Save, Reset, Exit.
  * It wil be placed at the bottom of the frame
  */
 public class ControlPanel extends JPanel {
-    final MainFrame frame;
-    JButton saveBtn = new JButton("Save");
-    JButton loadBtn = new JButton("Load");
-    JButton resetBtn = new JButton("Reset");
-    JButton exitBtn = new JButton("Exit");
+    private final MainFrame frame;
+    private JButton saveBtn = new JButton("Save");
+    private JButton loadBtn = new JButton("Load");
+    private JButton resetBtn = new JButton("Reset");
+    private JButton exitBtn = new JButton("Exit");
+
+    /**
+     * optional
+     */
+    private JButton removeLastShapeBtn = new JButton("Remove last shape");
 
     public ControlPanel(MainFrame frame) {
         this.frame = frame;
@@ -34,6 +39,7 @@ public class ControlPanel extends JPanel {
         add(loadBtn);
         add(resetBtn);
         add(exitBtn);
+        add(removeLastShapeBtn);
     }
 
     /**
@@ -44,25 +50,26 @@ public class ControlPanel extends JPanel {
         loadBtn.addActionListener(this::load);
         resetBtn.addActionListener(this::reset);
         exitBtn.addActionListener(this::exit);
+        removeLastShapeBtn.addActionListener(this::removeLastShape);
     }
 
     /**
      * init method: initializes the buttons
      * setLayout - changes the default layout manager
      */
-    public void init() {
-
-        setLayout(new GridLayout(1, 4));
+    private void init() {
+        setLayout(new GridLayout(1, 5));
         addButtons();
         addListeners();
     }
+
 
     /**
      * save method: saves the canvas in the current folder
      */
     private void save(ActionEvent e) {
         try {
-            ImageIO.write(frame.getCanvas().image, "PNG", new File("./test.png"));
+            ImageIO.write(frame.getCanvas().image, "PNG", new File("./paint.png"));
         } catch (IOException ex) {
             System.err.println(ex);
         }
@@ -82,16 +89,27 @@ public class ControlPanel extends JPanel {
         System.exit(0);
     }
 
+
+    /**
+     * optional
+     * load method - file chooser in order to specify the file where the image will be saved (or load).
+     */
     private void load(ActionEvent e) {
-        /*
-        JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        int result = fc.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            BufferedImage image = null;
-            //image = ImageIO.read(new File(fileChooser.getSelectedFile().getPath()));
-            frame.getCanvas().loadImage(image);
+        try {
+            JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView());
+            if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                BufferedImage image = ImageIO.read(new File(fileChooser.getSelectedFile().getPath()));
+                frame.getCanvas().loadImage(image);
+            }
+        } catch (IOException ex) {
+            System.out.println(ex);
         }
-        */
     }
 
+    /**
+     * optional
+     */
+    private void removeLastShape(ActionEvent event) {
+        frame.getCanvas().removeLastShape();
+    }
 }

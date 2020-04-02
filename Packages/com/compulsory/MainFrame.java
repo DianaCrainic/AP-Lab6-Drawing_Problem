@@ -1,16 +1,21 @@
-package compulsory;
+package com.compulsory;
+
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * MainFrame class
- * The Frame of the Application
+ * MainFrame class: The Frame of the application
  */
 public class MainFrame extends JFrame {
-    ConfigPanel configPanel;
-    ControlPanel controlPanel;
-    DrawingPanel canvas;
+    private ConfigPanel configPanel;
+    private ControlPanel controlPanel;
+    private DrawingPanel canvas;
+
+    /**
+     * optional
+     */
+    private ShapesPanel shapesPanel;
 
     public MainFrame() {
         super("My Drawing Application");
@@ -21,8 +26,16 @@ public class MainFrame extends JFrame {
         return configPanel;
     }
 
+    public ControlPanel getControlPanel() {
+        return controlPanel;
+    }
+
     public DrawingPanel getCanvas() {
         return canvas;
+    }
+
+    public ShapesPanel getShapesPanel() {
+        return shapesPanel;
     }
 
     /**
@@ -30,6 +43,7 @@ public class MainFrame extends JFrame {
      */
     private void createPanels() {
         canvas = new DrawingPanel(this);
+        shapesPanel = new ShapesPanel(this);
         configPanel = new ConfigPanel(this);
         controlPanel = new ControlPanel(this);
     }
@@ -42,17 +56,19 @@ public class MainFrame extends JFrame {
         add(canvas, BorderLayout.CENTER);
         add(configPanel, BorderLayout.NORTH);
         add(controlPanel, BorderLayout.SOUTH);
+        add(shapesPanel, BorderLayout.WEST);
     }
 
-
     /**
-     * init method = initialize the Mainframe
+     * init method: initialize the Mainframe
      */
     private void init() {
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         createPanels();
         addElements();
         //invoke the layout manager
         pack();
     }
+
+
 }
