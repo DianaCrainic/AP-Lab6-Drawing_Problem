@@ -4,6 +4,7 @@ package com.bonus;
  * Edge class: an edge of graph
  */
 public class Edge {
+
     Node source;
     Node destination;
     int stroke;
