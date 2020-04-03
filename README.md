@@ -1,4 +1,4 @@
-# Drawing Problem Demo: https://youtu.be/mPFkK2UR5Dk
+# Drawing Problem (Demo: https://youtu.be/mPFkK2UR5Dk)
 
 - Compulsory (all tasks)
 - Optional (all tasks)
