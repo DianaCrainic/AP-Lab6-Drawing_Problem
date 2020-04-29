@@ -7,8 +7,8 @@ import java.util.List;
  * Graph class
  */
 public class Graph {
-    List<Node> nodes;
-    List<Edge> edges;
+    private List<Node> nodes;
+    private List<Edge> edges;
 
     public Graph(List<Node> nodes, List<Edge> edges) {
         this.nodes = nodes;
@@ -16,7 +16,7 @@ public class Graph {
     }
 
     public List<Node> getNodes() {
-        return nodes; 
+        return nodes;
     }
 
     public List<Edge> getEdges() {

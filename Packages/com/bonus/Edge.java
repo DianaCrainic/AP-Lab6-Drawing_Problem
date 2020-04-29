@@ -4,10 +4,9 @@ package com.bonus;
  * Edge class: an edge of graph
  */
 public class Edge {
-
-    Node source;
-    Node destination;
-    int stroke;
+    private Node source;
+    private Node destination;
+    private int stroke;
 
     public Edge(Node source, Node destination, int stroke) {
         this.source = source;

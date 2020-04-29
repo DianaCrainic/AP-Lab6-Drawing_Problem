@@ -1,12 +1,12 @@
 package com.bonus;
 
 /**
- * Node class: a node from a graph 
+ * Node class: a node from a graph
  */
 public class Node {
-    int x;
-    int y;
-    int stroke;
+    private int x;
+    private int y;
+    private int stroke;
 
     public Node(int x, int y, int stroke) {
         this.x = x;
